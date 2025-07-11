@@ -73,7 +73,7 @@ def xml_to_markdown(element, parent_node=None):
 
     elif element.tag == "quote":
         markdown_content += f"> {element.text.strip()}\n"
-    
+
     elif element.tag == "del":
         markdown_content += f"~~{element.text.strip()}~~\n"
 
@@ -88,7 +88,7 @@ def xml_to_markdown(element, parent_node=None):
     if element.tag != "table":
         child_elements = [xml_to_markdown(child, element) for child in element]
         markdown_content += "".join(child_elements)
-        
+
     if element.tail:
         # the remaining part in a paragraph
         markdown_content += element.tail.strip()
@@ -132,6 +132,6 @@ if __name__ == "__main__":
         html_content = f.read()
 
     markdown_content = code_html_to_markdown(html_content)
-    
+
     with open(args.output, 'w') as f:
         f.write(markdown_content)
